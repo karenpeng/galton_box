@@ -1,23 +1,25 @@
 class MovingBall extends Ball{
   PVector velocity;
   PVector acceleration;
+  color look;
   int opacity;
-  boolean arrived;
+  float number;
   
   MovingBall(PVector p, color c){
-    super(p,c);
+    super(p);
     velocity=new PVector(0,0);
     acceleration = new PVector (0,.6);
+    look=c;
     opacity=20;
-    arrived = false;
+    number=0;
   }
 
   void update(){    
     position.add(velocity);
     velocity.add(acceleration); 
     opacity++;
-    if(opacity>200){
-      opacity=200;
+    if(opacity>250){
+      opacity=250;
     }
     if(position.x<diameter/2 || position.x>width-diameter/2){
       velocity.x*=-1;
@@ -52,7 +54,7 @@ class MovingBall extends Ball{
   }
 
   void display(){
-    fill(look,opacity);
+    fill(color(look),opacity);
     noStroke();
     ellipse(position.x,position.y,diameter,diameter);
   }

@@ -20,14 +20,14 @@ void setup(){
       for(int j=0;j<15;j++){
         PVector number;
         number = new PVector(j*40+40,i*40+40);
-        balls.add(new Ball(number,125));
+        balls.add(new Ball(number));
       }
     }
     else{
       for(int k=0;k<14;k++){
         PVector number1;
         number1 = new PVector(k*40+60,i*40+40);
-        balls.add(new Ball(number1,125));
+        balls.add(new Ball(number1));
       }
     } 
   }
@@ -36,10 +36,6 @@ void setup(){
   for(int l=0;l<17;l++){
     boards.add(new Board(l*40));
   }
-  /*
-  color cc = color( int(random(20,280)),255,255 );
-  PVector number2 = new PVector(random(width/2-10,width/2+10),0);
-  movingBalls.add(new MovingBall(number2,cc));*/
 }
 
 void draw(){
@@ -50,18 +46,15 @@ void draw(){
     rect(0,0,width,680);
   //}
 
-  //adding moving balls
-  
+  //adding moving balls  
   if(frameCount % 30 == 0){
-    color cc = color( int(random(20,280)),255,255 );
+    color cc = int(random(20,280));
     PVector number2 = new PVector(random(width/2-10,width/2+10),0);
-    movingBalls.add(new MovingBall(number2,cc));
+    movingBalls.add(new MovingBall(number2,color(cc,255,255)));
   }
   
   //animate the moving balls and bounce
   for(int i=0;i<movingBalls.size();i++){
-     movingBalls.get(i).update();
-     movingBalls.get(i).display();
     if(movingBalls.get(i).position.y<=400){
       for(int j=0;j<balls.size();j++){
          movingBalls.get(i).check(balls.get(j));     
@@ -73,6 +66,9 @@ void draw(){
         boards.get(k).pool(movingBalls.get(i));
       }
     }
+    
+     movingBalls.get(i).update();
+     movingBalls.get(i).display();
   }
    
   for (int i = 0; i < balls.size(); i++) {
@@ -89,8 +85,6 @@ void draw(){
       balls.get(k).display();
     }
   }  
-   
-
 }
 
 void keyPressed(){

@@ -1,13 +1,11 @@
 class Ball{
   PVector position;
-  color look;
   int diameter;
   boolean hit;
   float counter;
   
-  Ball(PVector p, color c){
-    position=p;
-    look=color(c);
+  Ball(PVector p){
+    position=p; 
     diameter=10;
     hit=false;
     counter=0;    
@@ -15,10 +13,10 @@ class Ball{
   
   void display(){
     if(!hit){
-      fill(color(255,200));
+      fill(color(255,100));
     }
     else{
-      fill(color(50,255,255,200));
+      fill(color(50,255,255,100));
     }
     noStroke();
     ellipse(position.x,position.y,diameter,diameter);
