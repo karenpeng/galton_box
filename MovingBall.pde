@@ -8,10 +8,11 @@ class MovingBall extends Ball{
   MovingBall(PVector p, color c){
     super(p);
     velocity=new PVector(0,0);
-    acceleration = new PVector (0,.6);
+    acceleration = new PVector (0,.62);
     look=c;
-    opacity=20;
+    opacity=40;
     number=0;
+    diameter=12;
   }
 
   void update(){    
@@ -28,7 +29,7 @@ class MovingBall extends Ball{
 
   void check(Ball any){  
     
-    //check the friction
+    //calculate the bouncing angle
     float dis = PVector.dist(position, any.position);   
     float rr = (diameter+any.diameter)/2;
     
@@ -45,7 +46,7 @@ class MovingBall extends Ball{
       }
     }  
   }
-  
+  //bounce it
   void settle(Board any){
     float dis0 = abs(position.x-any.x);
     if(dis0<=diameter/2){
@@ -54,7 +55,7 @@ class MovingBall extends Ball{
   }
 
   void display(){
-    fill(color(look),opacity);
+    fill(look,opacity);
     noStroke();
     ellipse(position.x,position.y,diameter,diameter);
   }
